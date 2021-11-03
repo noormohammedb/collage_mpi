@@ -1,7 +1,7 @@
 data segment
 		msg1 db 'enter first number : $'
 		msg2 db 0AH, 0DH, 'enter the second number : $'
-		msg3 db 0AH, 0DH, 'enter the sum is = $'
+		msg3 db 0AH, 0DH, 'the sum is = $'
 		num1 db ?
 		num2 db ?
 data ends
@@ -25,9 +25,9 @@ start:		mov AX, data
 				int 21h
 				
 				mov ah,01h
-				int 21h				;read the second number
+				int 21h			;read the second number
 				sub al,30h		;convert the ascii value to binary
-				mov num1,al		;store the second number in num2
+				mov num2,al		;store the second number in num2
 				
 				lea dx,msg3
 				mov ah,09h
@@ -35,12 +35,12 @@ start:		mov AX, data
 				
 				mov al, num1	;move the first number to al
 				mov bl, num2	;move the second number to bl
-				add al,bl			;add the numbers and store resutl in al
+				add al,bl		;add the numbers and store resutl in al
 				
 				add al,30h		;convert binary value to ascii for display
 				mov dl,al
 				mov ah,02h
-				int 21h				;display the sum num1+num2
+				int 21h			;display the sum num1+num2
 				
 				mov ah,4ch
 				int 21h
