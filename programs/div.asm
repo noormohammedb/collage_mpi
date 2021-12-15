@@ -1,8 +1,8 @@
 DATA SEGMENT
 	msg1 db 'enter the first number (divide) : $'
-	msg2 db OAH, ODH, 'enter the second numner (diviser) : $'
-	msg3 db OAH, ODH, 'the quotient is = $'
-	msg4 db OAH, ODH, 'the remainder is = $'
+	msg2 db 0AH, 0DH, 'enter the second numner (diviser) : $'
+	msg3 db 0AH, 0DH, 'the quotient is = $'
+	msg4 db 0AH, 0DH, 'the remainder is = $'
 	num1 db ?
 	num2 db ?
 	qnt db ?
@@ -20,7 +20,7 @@ START:	mov ax, data
 
 	mov ah, 01h
 	int 21h
-	sub a1, 30h
+	sub al, 30h
 	mov num1, al
 	
 	lea dx, msg2
@@ -32,7 +32,7 @@ START:	mov ax, data
 	sub al, 30h
 	mov num2, al
 
-	mov a1, num1
+	mov al, num1
 	mov ah, 00h
 	mov bl, num2
 	div bl
@@ -54,7 +54,11 @@ START:	mov ax, data
 	mov ah, 09h
 	int 21h
 
+	mov dl, rem
+	mov ah, 02h
+	int 21h
+	
 	mov ah, 4ch
 	int 21h
 CODE ENDS
-ENDS START
+END START
