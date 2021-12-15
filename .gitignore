@@ -1,0 +1,6 @@
+*.EXE
+*.OBJ
+*.MAP
+programs/*.EXE
+programs/*.OBJ
+programs/*.MAP
