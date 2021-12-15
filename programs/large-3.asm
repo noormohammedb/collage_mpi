@@ -43,7 +43,7 @@ start:
 	mov num3, al
 
 	mov al, num1
-	mov bl, num1
+	mov bl, num2
 	cmp al, bl
 	jnc first
 
